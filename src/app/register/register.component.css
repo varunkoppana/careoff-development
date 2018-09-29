@@ -1,0 +1,16 @@
+.form-register .container .row{
+    border-bottom-width: 15px;
+    padding-bottom: 15px;
+}
+
+.form-register .rgstrbtn{
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+.form-register .title{
+    text-align: center;
+    padding-bottom: 30px;
+    padding-top: 15px;
+}
