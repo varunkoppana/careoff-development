@@ -6,7 +6,7 @@ export const identitySameValidator: ValidatorFn = (control: FormGroup): Validati
   const password = control.get('rgstrPassword');
   const confirmPassword = control.get('rgstrCnfrmPassword');
 
-  return password && confirmPassword && password.value !== confirmPassword.value ? { 'identitySame': true } : { 'identitySame': false };
+  return password && confirmPassword && password.value !== confirmPassword.value ? { 'identitySame': true } : null;
 };
 @Directive({
   selector: '[appIdentifySame]',
