@@ -8,21 +8,15 @@ import {identitySameValidator} from '../shared/identity-same.directive';
 })
 
 export class RegisterComponent implements OnInit {
-  // registerForm: FormGroup;
-  name : string= 'varun';
-  constructor(
-    // private formBuilder: FormBuilder
-  ) { }
+  
+  states:any =[{'id':1,'name':"newyork"}];
+
+  constructor() { }
 
   ngOnInit() {
-  //   this.registerForm = this.formBuilder.group({
-  //     name: ['', Validators.required],
-  //     email: ['', Validators.required],
-  //     password: ['', [Validators.required, Validators.minLength(8)]],
-  //     confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
-  // }, { validators: identitySameValidator });
+    
   }
 
   
-  // get form() { return this.registerForm.controls; }
+
 }

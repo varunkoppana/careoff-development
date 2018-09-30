@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {RouterModule} from '@angular/router';
 import { IdentitySameValidatorDirective } from './shared/identity-same.directive'
+import {DashboardModule} from './dashboard/dashboard.module'
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { IdentitySameValidatorDirective } from './shared/identity-same.directive
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    DashboardModule,
     RouterModule.forRoot([
       {
         path : 'login',

@@ -1,59 +1,150 @@
-<form #registerForm ="ngForm" appIdentifySame> <!-- (ngSubmit)="onSubmit()" -->
-  <div class="cross-validation" [class.cross-validation-error]="registerForm.errors?.identitySame && (registerForm.touched || registerForm.dirty)">
+<form class="form-register" #registerForm="ngForm" appIdentifySame>
+
+  <h2 class="form-register-heading">REGISTER</h2>
+
+  <!-- NAME -->
   <div class="form-group">
-      
-    <label for="name">Name</label>
-    <input id="name" name="name" class="form-control"
-    required [(ngModel)]="name" #name="ngModel" >
-    
-    <div *ngIf="name.invalid && (name.dirty ||name.touched)" class="alert alert-danger">
-      <div *ngIf="name.errors.required">
-        Name is required
-      </div>
-    </div>
-  </div>
-  </div>
-  <!-- <div class="form-group">
-    <label for="email">Email Address</label>
-    <input type="email" name ="email" class="form-control" required />
-    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-      <div *ngIf="email.errors.required">
+    <label for="rgstrName">Name</label>
+    <input id="rgstrName" name="rgstrName" placeholder="Name" class="form-control" required [(ngModel)]="name"
+      #rgstrName="ngModel">
+    <div *ngIf="rgstrName.invalid && (rgstrName.dirty || rgstrName.touched)" class="invalid-feedback">
+      <div *ngIf="rgstrName.errors.required">
         Name is required.
       </div>
-      <div *ngIf="email.errors.email">
-        Email must be valid Email Address
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div class="form-group">
+    <label for="rgstEmail">Email</label>
+    <input type="text" id="rgstEmail" name="rgstEmail" placeholder="Email Address" class="form-control" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+      required [(ngModel)]="email" #rgstEmail="ngModel">
+
+    <div *ngIf="rgstEmail.invalid && (!rgstEmail.pristine || rgstEmail.touched)" class="invalid-feedback">
+      <div *ngIf="rgstEmail.errors.required">
+        Email is required.
+      </div>
+      <div *ngIf="rgstEmail.errors.pattern">
+        Email is not valid
       </div>
     </div>
   </div>
-  <div class="cross-validation" [class.cross-validation-error]="registerForm.errors?.identitySame && (registerForm.touched || registerForm.dirty)">
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" name="password" class="form-control" required />
-      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
-        <div *ngIf="password.errors.required">
-          Password is required
-        </div>
-        <div *ngIf="form.password.errors.minlength">
-          Password must be at least 8 characters
-        </div>
+
+  <!-- Password -->
+  <div class="form-group">
+    <label for="rgstrPassword">Password</label>
+    <input type="password" id="rgstrPassword" placeholder="Password" class="form-control" name="rgstrPassword"
+      minlength="8" #rgstrPassword="ngModel" [(ngModel)]="password">
+    <div *ngIf="rgstrPassword.invalid && (rgstrPassword.dirty || rgstrPassword.touched )" class="invalid-feedback">
+      <div *ngIf="rgstrPassword.errors.required">
+        Password is required.
+      </div>
+      <div *ngIf="rgstrPassword.errors.minlength">
+        Password must be 8 characters
       </div>
     </div>
-    <div class="form-group">
-      <label for="confirmPassword">Confirm Password</label>
-      <input type="password" name="confirmPassword" class="form-control"  required/>
-      <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="alert alert-danger">
-        <div *ngIf="confirmPassword.errors.required">
-          Confirm Password is required.
-        </div>
-        <div *ngIf="confirmPassword.errors.minlength">
-          Password must be at least 8 characters
-        </div>
+  </div>
+
+  <!-- Confirm Password -->
+  <div class="form-group">
+    <label for="rgstrCnfrmPassword"> Confirm Password </label>
+    <input type="password" id="rgstrCnfrmPassword" placeholder="Confirm Password" class="form-control" name="rgstrCnfrmPassword"
+      minlength="8" #rgstrCnfrmPassword="ngModel" [(ngModel)]="confirmPassword" [ngModelOptions]="{ updateOn: 'blur' }">
+    <div *ngIf="rgstrCnfrmPassword.invalid && (rgstrCnfrmPassword.dirty || rgstrCnfrmPassword.touched)" class="invalid-feedback">
+
+      <div *ngIf="rgstrCnfrmPassword.errors.required">
+        Confirm Password is required.
       </div>
-      <div *ngIf="registerForm.errors?.identitySame && (registerForm.touched || registerForm.dirty)" class="cross-validation-error-message alert alert-danger">
-          password not same.
-        </div>
+
     </div>
-   
-  </div> -->
-  <button type="submit" [disabled]="!registerForm.valid">Submit</button>
+    <div *ngIf="registerForm.errors?.identitySame && rgstrCnfrmPassword.dirty " class="invalid-feedback">
+      Password Doesn't Match.
+    </div>
+
+  </div>
+
+  <!-- Addresss -->
+  <div class="rgstr-address">
+    <h3>Address</h3>
+  </div>
+
+  <!-- Street Address 1 -->
+  <div class="form-group">
+    <label for="rgstrStreet">Street Address</label>
+    <input id="rgstrStreet" name="rgstrStreet" placeholder="Street Address" class="form-control" required [(ngModel)]="streetAddress1"
+      #rgstrStreet="ngModel">
+    <div *ngIf="rgstrStreet.invalid && (rgstrStreet.dirty || rgstrStreet.touched)" class="invalid-feedback">
+
+      <div *ngIf="rgstrStreet.errors.required">
+        Street Address is required.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Street Address 2 -->
+  <div class="form-group">
+    <label for="rgstrStreetO">Street Address (Optional)</label>
+    <input id="rgstrStreetO" name="rgstrStreetO" placeholder="Street Address (Optional)" class="form-control"
+      [(ngModel)]="streetAddress2" #rgstrStreetO="ngModel">
+  </div>
+
+  <!-- City -->
+  <div class="form-group">
+    <label for="rgstrCity">City</label>
+    <input id="rgstrCity" name="rgstrCity" placeholder="Street Address" class="form-control" required [(ngModel)]="city"
+      #rgstrCity="ngModel">
+    <div *ngIf="rgstrCity.invalid && (rgstrCity.dirty || rgstrCity.touched)" class="invalid-feedback">
+
+      <div *ngIf="rgstrCity.errors.required">
+        City is required.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- State -->
+  <div class="form-group">
+    <label for="rgstrState">State</label>
+    <select class="form-control " id="rgstrState">
+      <option *ngFor="let state of states" [value]=state>{{state.name}}</option>
+    </select>
+
+  </div>
+
+  <!-- Zip Code -->
+  <div class="form-group">
+    <label for="rgstrZip">Zip Code</label>
+    <input id="rgstrZip" type="text" name="rgstrZip" placeholder="Zip Code" class="form-control" required [(ngModel)]="zipCode"
+      #rgstrZip="ngModel" pattern="^[0-9]{5}(?:-[0-9]{4})?$">
+    <div *ngIf="rgstrZip.invalid && (rgstrZip.dirty || rgstrZip.touched)" class="invalid-feedback">
+
+      <div *ngIf="rgstrZip.errors.required">
+        Zip Code is required.
+      </div>
+      <div *ngIf="rgstrZip.errors.pattern">
+        Zip Code is invalid
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Mobile Number -->
+  <div class="form-group">
+    <label for="rgstrPhoneNumber">Mobile Number</label>
+    <input id="rgstrPhoneNumber" type="text" name="rgstrPhoneNumber" placeholder="Mobile Number" class="form-control"
+      required [(ngModel)]="phoneNumber" #rgstrPhoneNumber="ngModel" pattern="^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$">
+    <div *ngIf="rgstrPhoneNumber.invalid && (rgstrPhoneNumber.dirty || rgstrPhoneNumber.touched)" class="invalid-feedback">
+
+      <div *ngIf="rgstrPhoneNumber.errors.required">
+        Mobile Number is required.
+      </div>
+      <div *ngIf="rgstrPhoneNumber.errors.pattern">
+          Mobile Number is invalid
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Button -->
+  <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled] = registerForm.invalid (click)="rgstrMember()">Register</button>
 </form>
